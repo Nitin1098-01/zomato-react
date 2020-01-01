@@ -1,0 +1,369 @@
+header {
+  display: flex;
+  padding: 8px;
+}
+.header-item {
+  display: inline-flex;
+  align-items: center;
+  margin: 8px;
+}
+
+.header-item > img {
+  height: 28px;
+}
+
+.header-item > span {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.left-item {
+  margin-right: auto;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  max-width: 1080px;
+  margin: 0 auto;
+  flex-direction: column;
+  border: 2px solid black;
+}
+
+/* .filler {
+    flex-grow: 1;
+} */
+.header-item-list {
+  display: flex;
+}
+
+.zomato-logo img {
+  height: 120px;
+}
+
+.zomato-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.zomato-logo h3 {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  background-color: none;
+  color: white;
+  font-size: 24px;
+}
+
+.banner {
+  width: 100%;
+  height: 300px;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.267),
+      rgba(0, 0, 0, 0.185)
+    ),
+    url(https://b.zmtcdn.com/images/foodshots/cover/pizza3.jpg?output-format=webp);
+}
+
+.login-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+button {
+  padding: 14px;
+  font-size: 15px;
+  border-radius: 4px;
+  border: none;
+  background: none;
+  color: white;
+}
+
+.primary-btn {
+  background-color: red;
+  font-weight: bold;
+  font-family: sans-serif;
+  font-size: 18px;
+}
+
+.primary1-btn {
+  background-color: red;
+  margin-right: 10%;
+}
+.raised-btn {
+  width: 40%;
+  color: black;
+  background: white;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.outlined-btn {
+  border: 2px solid white;
+}
+
+.full-btn {
+  color: red;
+  font-family: sans-serif;
+  font-size: 16px;
+  margin-top: 10px;
+  width: 100%;
+  background-color: white;
+  border-radius: 4px;
+}
+
+.search-actions {
+  display: flex;
+  justify-content: center;
+  border: 2px solid yellow;
+}
+
+.search-bar {
+  border-radius: 4px;
+  padding: 2px;
+  display: flex;
+}
+
+.general {
+  background-color: rgba(228, 222, 222, 0.801);
+}
+
+.row {
+  display: flex;
+  width: 100%;
+}
+
+.left-side-pane {
+  padding-top: 30px;
+  width: 67%;
+  border: 2px solid black;
+}
+
+.right-side-pane {
+  padding-left: 2%;
+  padding-top: 30px;
+  width: 30%;
+  border: 2px solid green;
+}
+
+.poster-img img {
+  width: 100%;
+}
+
+.line1 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.line2 {
+  margin-top: -25px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  color: grey;
+}
+
+.right_message {
+  background-color: white;
+  width: 98%;
+  padding-left: 2%;
+  border-radius: 4px;
+}
+
+.right_first {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.location_tracker {
+  padding-right: 10%;
+  width: 80%;
+  border: 1px solid rgb(216, 215, 215);
+  border-radius: 4px;
+}
+
+.row_content {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-size: 12px;
+  color: rgb(160, 158, 158);
+}
+
+.right_pop {
+  margin-top: 10px;
+  background-color: green;
+  padding-right: 10%;
+  width: 80%;
+  border: 1px solid rgb(216, 215, 215);
+  border-radius: 4px;
+}
+
+.no-use {
+  padding-top: 40px;
+  font-size: 14px;
+  text-align: center;
+  color: green;
+}
+
+.na {
+  padding-top: 40px;
+}
+
+.grid-container {
+  display: grid;
+  grid-column-gap: 50px;
+  grid-row-gap: 50px;
+  grid-template-columns: auto auto;
+  border: 2px solid red;
+}
+
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+}
+
+.all-search {
+  margin-top: 10px;
+  width: 100%;
+  justify-content: center;
+}
+.icons-display {
+  background-color: white;
+}
+.ui[class*="eight column"].grid > .column:not(.row),
+.ui[class*="eight column"].grid > .row > .column {
+  width: 12.5%;
+}
+
+.ui.grid > .column:not(.row) {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.ui.grid > .column:not(.row),
+.ui.grid > .row > .column {
+  position: relative;
+  display: inline-block;
+  width: 6.25%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  vertical-align: top;
+}
+
+.container_full {
+  width: 100%;
+  display: flex;
+  margin: 0 auto;
+  max-width: 1080px;
+  flex-direction: column;
+  border: 2px solid black;
+}
+
+.response {
+  max-width: 1600px;
+  display: flex;
+  background-color: red;
+}
+
+.center_content {
+  margin: 0 auto; /* Move div to Center  */
+  padding-top: 30px;
+  width: 100%;
+  border: 2px solid black;
+}
+
+.center_content img {
+  display: flex;
+  flex-direction: column;
+
+  padding-left: 3px;
+}
+
+.plain-btn {
+  border: 2px solid grey;
+  background: transparent;
+  width: 33%;
+  color: black;
+  font-family: sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.green-btn {
+  background: green;
+  width: 33%;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.middle_outlets {
+  /* border: 2px solid yellow; */
+}
+
+.detail_contents {
+  padding-left: 30px;
+  /* border: 2px solid blue; */
+}
+
+.quick_bites {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  color: rgb(211, 202, 202);
+}
+
+.name {
+  font-family: sans-serif;
+  color: red;
+  margin-top: -20px;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.locality {
+  font-family: sans-serif;
+  color: black;
+  margin-top: -20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.address {
+  font-family: sans-serif;
+  color: grey;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.middle_outlets {
+  display: flex;
+  flex-direction: column;
+  padding-right: 20px;
+  /* border: 2px solid blueviolet; */
+  max-width: 80%;
+}
+
+.middle_input {
+  border: 2px solid green;
+  font-family: sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: tomato;
+  flex: 1;
+}
+
+.middle_output {
+  padding-right: 50%;
+  border: 2px solid indianred;
+  flex: 2;
+  font-family: sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
+}
