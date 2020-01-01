@@ -76,7 +76,7 @@ class RestaurantComponent extends React.Component {
               View Menu
             </button>
             <button onClick={this.handleOrder} class="green-btn">
-              Order now
+              Order now soon
             </button>
           </div>
         </div>
