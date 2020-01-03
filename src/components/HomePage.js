@@ -1,80 +1,191 @@
 import React from "react";
 import "../style.css";
-import { searchForRestaurants } from "../helpers/methods";
+import {
+  searchForRestaurants,
+  getCoordinates,
+  collections
+} from "../helpers/methods";
+import DetailsPage from "./DetailsPage";
+import CollectionComponent from "./CollectionComponent";
 
 class HomePage extends React.Component {
   handleSearch = () => {
-    localStorage.setItem("city", this.state.city);
-    window.location.replace("/details");
+    this.setState({
+      showDetails: true,
+      city: "chennai"
+    });
   };
+  constructor(props) {
+    super(props);
+    this.state = {
+      city: "chennai",
+      showDetails: false,
+      collections: [],
+      showAllCollections: false
+    };
+
+    this.collectiondetails();
+  }
+  handleAllCollectionsClicked = () => {
+    this.setState({
+      showAllCollections: !this.state.showAllCollections
+    });
+  };
+  renderCollectionsList = () => {
+    if (this.state.collections.length == 0) {
+      return "";
+    } else {
+      if (this.state.showAllCollections || this.state.collections.length < 4) {
+        return this.state.collections.map(collection => (
+          <CollectionComponent collection={collection} />
+        ));
+      }
+      return this.state.collections
+        .slice(0, 4)
+        .map(collection => <CollectionComponent collection={collection} />);
+    }
+  };
+
+  // display = () => {
+  //   return this.state.collections.map(collection => (
+  //     <CollectionComponent collection={collection} />
+  //   ));
+  // };
+
   handleDropDown = ev => {
     let city = ev.target.value;
+    console.log(city);
     this.setState({
       city: city
     });
+
+    this.collectiondetails();
   };
+  collectiondetails = () => {
+    getCoordinates(this.state.city, result => {
+      collections(result[1], result[0], collectresult => {
+        //
+        let cleanList = [];
+        console.log("This is the entire response", collectresult);
+        collectresult.collections.forEach(element => {
+          console.log("== Item in collections == ", element);
+          let collectObj = {};
+          collectObj.image = element.collection.image_url;
+          collectObj.url = element.collection.url;
+          collectObj.title = element.collection.title;
+          collectObj.description = element.collection.description;
+          cleanList.push(collectObj);
+          console.log(cleanList);
+
+          this.setState({
+            collections: cleanList
+          });
+        });
+      });
+    });
+  };
+
   render() {
     return (
       <body>
-        <header>
-          <div class="container">
-            <div class="header-item-list">
-              <div class="left-item header-item">
+        <div class="general">
+          <header>
+            <div class="container">
+              <div class="header-item-list">
+                <div class="left-item header-item">
+                  <img
+                    src="https://b.zmtcdn.com/images/icons/get-the-app-plain.svg"
+                    alt=""
+                  />
+                  <span>
+                    <a
+                      href="https://www.zomato.com/mobile?ref=new_header_top_nav"
+                      style={{ textDecoration: "none", color: "black" }}
+                    >
+                      Get the App
+                    </a>
+                  </span>
+                </div>
+
+                <div class="filler"></div>
+                <div class="header-item">
+                  <img
+                    src="https://b.zmtcdn.com/images/icons/order-online.svg"
+                    alt=""
+                  />
+                  <span>
+                    <a
+                      href="https://www.zomato.com/ncr/order"
+                      style={{ textDecoration: "none", color: "black" }}
+                    >
+                      Order Food
+                    </a>
+                  </span>
+                </div>
+                <div class="header-item">
+                  <img
+                    src="https://b.zmtcdn.com/images/icons/book-a-table.svg"
+                    alt=""
+                  />
+                  <span>
+                    <a
+                      href={`https://www.zomato.com/${this.state.city}/restaurants?q=`}
+                      style={{ textDecoration: "none", color: "black" }}
+                    >
+                      Book a Table
+                    </a>
+                  </span>
+                </div>
+                <div class="header-item">
+                  <img
+                    src="https://b.zmtcdn.com/images/icons/header_gold_icon.svg"
+                    alt=""
+                  />
+                  <span>
+                    <a
+                      href="https://www.zomato.com/gold"
+                      style={{ textDecoration: "none", color: "black" }}
+                    >
+                      Zomato Gold
+                    </a>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </header>
+          <section class="banner">
+            <div class="container">
+              <div class="login-actions">
+                <button>Login</button>
+                <button class="outlined-btn">Create an account</button>
+              </div>
+              <div class="zomato-logo">
                 <img
-                  src="https://b.zmtcdn.com/images/icons/get-the-app-plain.svg"
+                  src="https://b.zmtcdn.com/images/logo/zomato_flat_bg_logo.svg"
                   alt=""
                 />
-                <span>Get the App</span>
+                <h3>
+                  Find the best restaurants, cafes, and bars in Coimbatore
+                </h3>
               </div>
 
-              <div class="filler"></div>
-              <div class="header-item">
-                <img
-                  src="https://b.zmtcdn.com/images/icons/order-online.svg"
-                  alt=""
-                />
-                <span>Order Food</span>
-              </div>
-              <div class="header-item">
-                <img
-                  src="https://b.zmtcdn.com/images/icons/header_gold_icon.svg"
-                  alt=""
-                />
-                <span>Zomato Gold</span>
+              <div class="search-actions">
+                <select onChange={this.handleDropDown} class="raised-btn">
+                  <option value=""></option>
+                  <option value="chennai">Chennai</option>
+                  <option value="delhi">Delhi</option>
+                  <option value="bangalore">Bangalore</option>
+                  <option value="kolkata">Kolkata</option>
+                </select>
+
+                <button onClick={this.handleSearch} class="primary-btn">
+                  Search
+                </button>
               </div>
             </div>
-          </div>
-        </header>
-        <section class="banner">
-          <div class="container">
-            <div class="login-actions">
-              <button>Login</button>
-              <button class="outlined-btn">Create an account</button>
-            </div>
-            <div class="zomato-logo">
-              <img
-                src="https://b.zmtcdn.com/images/logo/zomato_flat_bg_logo.svg"
-                alt=""
-              />
-              <h3>Find the best restaurants, cafes, and bars in Coimbatore</h3>
-            </div>
-
-            <div class="search-actions">
-              <select onChange={this.handleDropDown} class="raised-btn">
-                <option value="bangalore">Bangalore</option>
-                <option value="chennai">Chennai</option>
-                <option value="delhi">Delhi</option>
-                <option value="kolkata">Kolkata</option>
-              </select>
-
-              <button onClick={this.handleSearch} class="primary-btn">
-                Search
-              </button>
-            </div>
-          </div>
-        </section>
-        <main>
-          <div class="general">
+          </section>
+          <main>
+            {/* <div class="general"> */}
             <div class="container">
               <div class="row">
                 <div class="left-side-pane">
@@ -98,18 +209,16 @@ class HomePage extends React.Component {
                     </div>
 
                     <div class="grid-container">
-                      <div class="grid-item">
-                        <div class="row">
-                          <img src="" alt="" />
-                        </div>
-                      </div>
-                      <div class="grid-item"></div>
-                      <div class="grid-item"></div>
-                      <div class="grid-item"></div>
+                      {this.renderCollectionsList()}
                     </div>
 
-                    <button class="full-btn">
-                      All Collection in Coimbatore
+                    <button
+                      onClick={this.handleAllCollectionsClicked}
+                      class="full-btn"
+                    >
+                      {this.state.showAllCollections
+                        ? "Hide All Collections"
+                        : "Show All Collections"}
                     </button>
                   </div>
 
@@ -169,7 +278,7 @@ class HomePage extends React.Component {
                 <div class="icons-display">
                   <div class="ui segment eight column grid">
                     <a
-                      href="https://www.zomato.com/coimbatore/breakfast"
+                      href={`https://www.zomato.com/${this.state.city}/breakfast}`}
                       style={{ textDecoration: "none", color: "black" }}
                       class="column ta-center start-categories-item"
                     >
@@ -188,7 +297,7 @@ class HomePage extends React.Component {
                     </a>
 
                     <a
-                      href="https://www.zomato.com/coimbatore/lunch"
+                      href={`https://www.zomato.com/${this.state.city}/lunch}`}
                       style={{
                         textDecoration: "none",
                         color: "black"
@@ -210,7 +319,7 @@ class HomePage extends React.Component {
                     </a>
 
                     <a
-                      href="https://www.zomato.com/coimbatore/dinner"
+                      href={`https://www.zomato.com/${this.state.city}/dinner`}
                       style={{
                         textDecoration: "none",
                         color: "black"
@@ -232,7 +341,7 @@ class HomePage extends React.Component {
                     </a>
 
                     <a
-                      href="https://www.zomato.com/coimbatore/delivery"
+                      href={`https://www.zomato.com/${this.state.city}/delivery`}
                       style={{ textDecoration: "none", color: "black" }}
                       class="column ta-center start-categories-item"
                     >
@@ -251,7 +360,7 @@ class HomePage extends React.Component {
                     </a>
 
                     <a
-                      href="https://www.zomato.com/coimbatore/restaurants?category=6"
+                      href={`https://www.zomato.com/${this.state.city}/restaurants?category=6`}
                       style={{ textDecoration: "none", color: "black" }}
                       class="column ta-center start-categories-item"
                     >
@@ -270,7 +379,7 @@ class HomePage extends React.Component {
                     </a>
 
                     <a
-                      href="https://www.zomato.com/coimbatore/restaurants?desserts-bakes=1"
+                      href={`https://www.zomato.com/${this.state.city}/restaurants?desserts-bakes=1`}
                       style={{ textDecoration: "none", color: "black" }}
                       class="column ta-center start-categories-item"
                     >
@@ -291,9 +400,15 @@ class HomePage extends React.Component {
                 </div>
               </div>
             </div>
-          </div>
-        </main>
-        <footer></footer>
+            {/* </div> */}
+            {this.state.showDetails ? (
+              <DetailsPage key={this.state.city} city={this.state.city} />
+            ) : (
+              ""
+            )}
+          </main>
+          <footer></footer>
+        </div>
       </body>
     );
   }

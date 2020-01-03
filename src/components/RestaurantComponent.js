@@ -9,10 +9,6 @@ class RestaurantComponent extends React.Component {
   handleOrder = () => {
     if (this.props.restaurant.order_now) {
       window.open(this.props.restaurant.order_now, "_blank");
-    } else {
-      alert(
-        "Oops!!! Order for this Restaurant is currently unavailable...Try sometimes later!!! "
-      );
     }
   };
   render() {
@@ -34,6 +30,13 @@ class RestaurantComponent extends React.Component {
               <div class="address">
                 <p>{this.props.restaurant.address}</p>
               </div>
+              <div class="check-order">
+                <p>
+                  {this.props.restaurant.order_now
+                    ? ""
+                    : "Order not Available now!!! Try sometimes later!!!"}
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -41,26 +44,26 @@ class RestaurantComponent extends React.Component {
 
         <div class="middle_outlets">
           <div class="row">
-            <div class="middle_input">
+            <div class="middle_input_o">
               <p>CUISINES : </p>
             </div>
-            <div class="middle_output">
+            <div class="middle_output_o">
               <p>{this.props.restaurant.cuisines}</p>
             </div>
           </div>
           <div class="row">
-            <div class="middle_input">
-              <p>COST FOR TWO:</p>
+            <div class="middle_input_t">
+              <p>COST FOR 2:</p>
             </div>
-            <div class="middle_output">
+            <div class="middle_output_t">
               <p>{this.props.restaurant.cost_for_two}</p>
             </div>
           </div>
           <div class="row">
-            <div class="middle_input">
-              <p>HOURS :</p>
+            <div class="middle_input_h">
+              <p>HOURS:</p>
             </div>
-            <div class="middle_output">
+            <div class="middle_output_h">
               <p>{this.props.restaurant.timing}</p>
             </div>
           </div>
@@ -75,7 +78,11 @@ class RestaurantComponent extends React.Component {
             <button onClick={this.handleMenu} class="plain-btn">
               View Menu
             </button>
-            <button onClick={this.handleOrder} class="green-btn">
+            <button
+              onClick={this.handleOrder}
+              class="green-btn"
+              disabled={!this.props.restaurant.order_now}
+            >
               Order now soon
             </button>
           </div>

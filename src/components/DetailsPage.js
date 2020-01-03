@@ -14,6 +14,7 @@ class DetailsPage extends React.Component {
       restaurants: []
     };
   }
+
   setRestaurants = restaurants => {
     let restaurantsList = getRestaurants(restaurants);
     this.setState({
@@ -21,7 +22,8 @@ class DetailsPage extends React.Component {
     });
   };
   componentDidMount = () => {
-    let city = localStorage.getItem("city");
+    let city = this.props.city;
+    console.log("The city is ", city);
     if (city) {
       getCoordinates(city, result => {
         searchForRestaurants(result[1], result[0], this.setRestaurants);
@@ -42,42 +44,44 @@ class DetailsPage extends React.Component {
   render() {
     return (
       <body>
-        <header>
-          <div class="container_full">
-            <div class="response">
-              <div class="zomato_banner">
-                <img src="" alt="" />
-              </div>
-            </div>
-
-            <div class="header-item-list">
-              <div class="left-item header-item">
-                <img
-                  src="https://b.zmtcdn.com/images/icons/get-the-app-plain.svg"
-                  alt=""
-                />
-                <span>Get the App</span>
+        <div class="general">
+          <header>
+            <div class="container_full">
+              <div class="response">
+                <div class="zomato_banner">
+                  <img src="" alt="" />
+                </div>
               </div>
 
-              <div class="filler"></div>
-              <div class="header-item">
-                <img
-                  src="https://b.zmtcdn.com/images/icons/order-online.svg"
-                  alt=""
-                />
-                <span>Order Food</span>
-              </div>
-              <div class="header-item">
-                <img
-                  src="https://b.zmtcdn.com/images/icons/header_gold_icon.svg"
-                  alt=""
-                />
-                <span>Zomato Gold</span>
+              <div class="header-item-list">
+                <div class="left-item header-item">
+                  <img
+                    src="https://b.zmtcdn.com/images/icons/get-the-app-plain.svg"
+                    alt=""
+                  />
+                  <span>Get the App</span>
+                </div>
+
+                <div class="filler"></div>
+                <div class="header-item">
+                  <img
+                    src="https://b.zmtcdn.com/images/icons/order-online.svg"
+                    alt=""
+                  />
+                  <span>Order Food</span>
+                </div>
+                <div class="header-item">
+                  <img
+                    src="https://b.zmtcdn.com/images/icons/header_gold_icon.svg"
+                    alt=""
+                  />
+                  <span>Zomato Gold</span>
+                </div>
               </div>
             </div>
-          </div>
-        </header>
-        {this.renderRestaurantList()}
+          </header>
+          {this.renderRestaurantList()}
+        </div>
       </body>
     );
   }

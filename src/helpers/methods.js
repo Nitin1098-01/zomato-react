@@ -50,12 +50,15 @@ export async function searchForRestaurants(lat, lon, onSuccess) {
   request.send();
 }
 
-export async function collections() {
-  let url =
-    "https://developers.zomato.com/api/v2.1/collections?city_id=7&lat=80.2707&lon=13.0827";
+export async function collections(lat, lon, onSuccess) {
+  let url = `https://developers.zomato.com/api/v2.1/collections?lat=${lat}&lon=${lon}`;
   let request = new XMLHttpRequest(url);
-  request.onreadystatechange = ev => {
-    console.log(JSON.parse(request.responseText));
+  request.onreadystatechange = () => {
+    if (request.readyState === 4 && request.status === 200) {
+      let obj = JSON.parse(request.responseText);
+      console.log("Entered collections, have obj ", obj);
+      onSuccess(obj);
+    }
   };
   request.open("GET", url);
   request.setRequestHeader("user-key", apiKey);
