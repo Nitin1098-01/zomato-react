@@ -79,6 +79,7 @@ export function getRestaurants(heavyArray) {
     emptyObj.call = obj.restaurant.phone_numbers;
     emptyObj.view_menu = obj.restaurant.menu_url;
     emptyObj.order_now = obj.restaurant.order_url;
+    emptyObj.res_id = obj.restaurant.id;
     restaurants_array.push(emptyObj);
   });
   return restaurants_array;

@@ -155,10 +155,10 @@ class HomePage extends React.Component {
           </header>
           <section class="banner">
             <div class="container">
-              <div class="login-actions">
+              {/* <div class="login-actions">
                 <button>Login</button>
                 <button class="outlined-btn">Create an account</button>
-              </div>
+              </div> */}
               <div class="zomato-logo">
                 <img
                   src="https://b.zmtcdn.com/images/logo/zomato_flat_bg_logo.svg"

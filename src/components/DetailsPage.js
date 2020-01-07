@@ -41,6 +41,9 @@ class DetailsPage extends React.Component {
       return components;
     }
   };
+  openFav = () => {
+    window.open("/Favorites");
+  };
   render() {
     return (
       <body>
@@ -53,7 +56,7 @@ class DetailsPage extends React.Component {
                 </div>
               </div>
 
-              <div class="header-item-list">
+              {/* <div class="header-item-list">
                 <div class="left-item header-item">
                   <img
                     src="https://b.zmtcdn.com/images/icons/get-the-app-plain.svg"
@@ -76,6 +79,14 @@ class DetailsPage extends React.Component {
                     alt=""
                   />
                   <span>Zomato Gold</span>
+                </div>
+              </div> */}
+              <button onClick={this.openFav} type="button" id="fav-btn">
+                Favorite
+              </button>
+              <div class="response">
+                <div class="zomato_banner">
+                  <img src="" alt="" />
                 </div>
               </div>
             </div>
