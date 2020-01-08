@@ -43,6 +43,7 @@ class DetailsPage extends React.Component {
   };
   openFav = () => {
     window.open("/Favorites");
+    // this.props.history.push("/Favorites");
   };
   render() {
     return (

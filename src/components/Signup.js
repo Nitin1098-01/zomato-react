@@ -48,7 +48,10 @@ class Signup extends React.Component {
     localStorageData.push(credential);
     localStorage.setItem("credentials", JSON.stringify(localStorageData));
     alert("Welcome user...Account created successfully!!!");
-    window.open("/HomePage");
+    // window.open("/HomePage");
+    // window.open("/LoginPage");
+    // this.history.push("/LoginPage");
+    this.props.history.push("/LoginPage");
   };
   render() {
     return (

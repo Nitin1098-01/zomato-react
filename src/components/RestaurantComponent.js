@@ -9,7 +9,7 @@ class RestaurantComponent extends React.Component {
     super(props);
     let favoritesInStorage = localStorage.getItem("favorites");
     let loggedInUser = localStorage.getItem("logged_user");
-    let isFavorite = false;
+    let isFavorite = this.props.isFavorite;
     favoritesInStorage = JSON.parse(favoritesInStorage);
     if (!favoritesInStorage) favoritesInStorage = [];
     favoritesInStorage.forEach(entry => {
@@ -58,9 +58,11 @@ class RestaurantComponent extends React.Component {
     newList.push(currentUserItem);
     localStorage.setItem("credentials", JSON.stringify(newList));
     this.setState({
-      isFavorite: true
+      isFavorite: false
     });
-
+    if (this.props.onFavoritesChanged) {
+      this.props.onFavoritesChanged();
+    }
     //   return !(
     //     entry.usr == this.state.loggedInUser &&
     //     entry.restaurantId == this.props.restaurant.res_id
@@ -91,6 +93,10 @@ class RestaurantComponent extends React.Component {
     this.setState({
       isFavorite: true
     });
+
+    if (this.props.onFavoritesChanged) {
+      this.props.onFavoritesChanged();
+    }
   };
   render() {
     return (
@@ -106,18 +112,21 @@ class RestaurantComponent extends React.Component {
                 <div class="add_fav">
                   {this.state.isFavorite ? (
                     //Favorited
-                    <button onClick={this.onFavoriteClicked} id="favorites">
+                    <button onClick={this.onFavoriteClicked} class="favorites">
                       <img
-                        src={require("../assests/favorite.svg")}
+                        src={require("../assests/favorite_bold.svg")}
                         alt=""
                       ></img>
                     </button>
                   ) : (
                     //Not favorited yet
-                    <button onClick={this.onUnFavoriteClicked} id="unfavorites">
+                    <button
+                      onClick={this.onUnFavoriteClicked}
+                      class="unfavorites"
+                    >
                       {/* Not favorite yet */}
                       <img
-                        src={require("../assests/favorite_bold.svg")}
+                        src={require("../assests/favorite.svg")}
                         alt=""
                       ></img>
                     </button>

@@ -11,8 +11,8 @@ import CollectionComponent from "./CollectionComponent";
 class HomePage extends React.Component {
   handleSearch = () => {
     this.setState({
-      showDetails: true,
-      city: "chennai"
+      showDetails: true
+      // city: "chennai"
     });
   };
   constructor(props) {
@@ -173,12 +173,24 @@ class HomePage extends React.Component {
                 <select onChange={this.handleDropDown} class="raised-btn">
                   <option value=""></option>
                   <option value="chennai">Chennai</option>
-                  <option value="delhi">Delhi</option>
+                  <option value="Ahmedabad">Ahmedabad</option>
                   <option value="bangalore">Bangalore</option>
                   <option value="kolkata">Kolkata</option>
+                  <option value="kochi">Kochi</option>
+                  <option value="mumbai">Mumbai</option>
+                  <option value="pune">Pune</option>
+                  <option value="dehradun">DehraDun</option>
+                  <option value="lucknow">Lucknow</option>
+                  <option value="amritsar">Amritsar</option>
+                  <option value="ranchi">Ranchi</option>
+                  <option value="jaipur">Jaipur</option>
+                  <option value="kanpur">Kanpur</option>
+                  <option value="nagpur">Nagpur</option>
+                  <option value="bhopal">Bhopal</option>
+                  <option value="indore">Indore</option>
                 </select>
 
-                <button onClick={this.handleSearch} class="primary-btn">
+                <button onClick={this.handleSearch} id="primary-searchbtn">
                   Search
                 </button>
               </div>

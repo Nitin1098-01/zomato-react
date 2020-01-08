@@ -3,8 +3,7 @@ import "../style.css";
 import RestaurantComponent from "./RestaurantComponent";
 
 class Favorites extends Component {
-  constructor(props) {
-    super(props);
+  getFavorites = () => {
     let loggedInUser = localStorage.getItem("logged_user");
     let localStorageObj = JSON.parse(localStorage.getItem("credentials"));
     let currentUserObj = localStorageObj.filter(
@@ -14,10 +13,21 @@ class Favorites extends Component {
     if (!currentUserObj) {
       currentUserObj = [];
     }
+    return currentUserObj.favorites;
+  };
+  constructor(props) {
+    super(props);
     this.state = {
-      favorites: currentUserObj.favorites
+      favorites: this.getFavorites()
     };
   }
+
+  onFavoritesChanged = () => {
+    this.setState({
+      favorites: this.getFavorites()
+    });
+  };
+
   render() {
     return (
       <div class="general">
@@ -58,7 +68,11 @@ class Favorites extends Component {
         </header>
 
         {this.state.favorites.map(entry => (
-          <RestaurantComponent restaurant={entry} />
+          <RestaurantComponent
+            restaurant={entry}
+            onFavoritesChanged={this.onFavoritesChanged}
+            isFavorite={true}
+          />
         ))}
       </div>
     );

@@ -94,7 +94,13 @@ button {
   font-size: 18px;
 }
 
+#primary-searchbtn {
+  background-color: red;
+  margin-right: 10%;
+}
+
 .primary1-btn {
+  width: 20%;
   background-color: red;
   margin-right: 10%;
 }
@@ -125,6 +131,10 @@ button {
   display: flex;
   justify-content: center;
   /* border: 2px solid yellow; */
+  height: 50px;
+  /* overflow-x: hidden; */
+  /* overflow-y: scroll; */
+  border-radius: 4px;
 }
 
 .search-bar {
@@ -514,8 +524,9 @@ button {
   margin: 8px 0;
   border: none;
   cursor: pointer;
-  width: 100%;
-  opacity: 0.9;
+  /* width: 100%; */
+  /* width: 20%; */
+  /* opacity: 0.9; */
 }
 
 button:hover {
@@ -554,6 +565,7 @@ button:hover {
     width: 100%;
   }
 }
+
 .fav {
   /* width: 100%; */
   display: flex;
@@ -566,17 +578,22 @@ button:hover {
   /* flex: 2; */
 }
 
-#favorites {
+.favorites {
   background: none;
-  fill: none;
+  /* fill: gold;*/
 }
 
 .is-favorite {
   fill: gold;
 }
 
-#unfavorites {
-  fill: grey;
+.unfavorites {
+  background: none;
+  /* fill: grey; */
+}
+
+.svg-color {
+  fill: gold;
 }
 
 .display-text {
